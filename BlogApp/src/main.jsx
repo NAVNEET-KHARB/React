@@ -14,7 +14,7 @@ import {
   LogIn,
   Post,
 } from "./pages/index.js";
-import AuthLayout from "./components/AuthLayout.jsx";
+import Protected from "./components/AuthLayout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,25 +28,49 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: (
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
             <LogIn />
-          </AuthLayout>
+          </Protected>
         ),
       },
       {
         path: "/signup",
         element: (
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
             <SignUp />
-          </AuthLayout>
+          </Protected>
         ),
       },
       {
         path: "/all-posts",
         element: (
-          <AuthLayout authentication>
+          <Protected authentication>
             <AllPosts />
-          </AuthLayout>
+          </Protected>
+        ),
+      },
+      {
+        path: "/add-post",
+        element: (
+          <Protected authentication>
+            <AddPost />
+          </Protected>
+        ),
+      },
+      {
+        path: "/edit-post/:slug",
+        element: (
+          <Protected authentication>
+            <EditPost />
+          </Protected>
+        ),
+      },
+      {
+        path: "/post/:slug",
+        element: (
+          <Protected authentication>
+            <Post />
+          </Protected>
         ),
       },
     ],
