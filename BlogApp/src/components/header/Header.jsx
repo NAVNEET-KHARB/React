@@ -14,7 +14,7 @@ function Header() {
     { name: "LogIn", slug: "/login", active: !authStatus },
     { name: "SignUp", slug: "/signup", active: !authStatus },
     { name: "All Posts", slug: "/all-posts", active: authStatus },
-    { name: "Add Posts", slug: "/add-posts", active: authStatus },
+    { name: "Add Posts", slug: "/add-post", active: authStatus },
   ];
   return (
     <header className="py-3 shadow bg-gray-500">

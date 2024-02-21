@@ -1,16 +1,42 @@
+import { useState, useEffect } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
 import "./App.css";
 import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logIn, logOut } from "./store/authSlice";
+import Header from "./components/Header/Header";
+import Footer from "./components/footer/Footer";
+import authService from "./appwrite/auth";
+import Logo from "./components/Logo";
 
 function App() {
-  return (
-    <>
-      <div>
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    authService
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) dispatch(logIn({ userData }));
+        else dispatch(logOut());
+      })
+      .finally(() => setLoading(false));
+  }, [dispatch]);
+
+  return !loading ? (
+    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
+      <div className="w-full block">
+        <Header />
         <main>
-        <Outlet />
+          <Outlet />
         </main>
       </div>
-    </>
-  );
+      <div className="w-full block">
+        <Footer />
+      </div>
+    </div>
+  ) : null;
 }
 
 export default App;

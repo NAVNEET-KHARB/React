@@ -2,28 +2,25 @@ import React from "react";
 import { Controller } from "react-hook-form";
 import { Editor } from "@tinymce/tinymce-react";
 
-function RTE({ name, control, label, defaultValues = "" }) {
+function RTE({ name, control, label, defaultValue = "" }) {
   return (
     <div className="w-full">
-      {label && <label className="inline-block mb-1 pl-1">{label}</label>}
+      {label && <label className="inline-block mb-1 pl-1"> {label}</label>}
       <Controller
         name={name || "content"}
         control={control}
         render={({ field: { onChange } }) => (
           <Editor
-            initialValue={defaultValues}
+            apiKey="bypws1860vsoui40edey9amdtfkg2u4lbo6flsrjb4bmg8rk"
+            initialValue={defaultValue}
             init={{
               branding: false,
               height: 500,
               menubar: true,
               plugins: [
-                "a11ychecker",
+                "image",
                 "advlist",
-                "advcode",
-                "advtable",
                 "autolink",
-                "checklist",
-                "export",
                 "lists",
                 "link",
                 "image",
@@ -32,19 +29,18 @@ function RTE({ name, control, label, defaultValues = "" }) {
                 "anchor",
                 "searchreplace",
                 "visualblocks",
-                "powerpaste",
+                "code",
                 "fullscreen",
-                "formatpainter",
                 "insertdatetime",
                 "media",
                 "table",
+                "code",
                 "help",
                 "wordcount",
+                "anchor",
               ],
               toolbar:
-                "undo redo | casechange blocks | bold italic backcolor | " +
-                "alignleft aligncenter alignright alignjustify | " +
-                "bullist numlist checklist outdent indent | removeformat | a11ycheck code table help",
+                "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
               content_style:
                 "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
             }}
