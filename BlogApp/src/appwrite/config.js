@@ -22,7 +22,7 @@ export class Service {
         slug
       );
     } catch (error) {
-      console.log("Appwrite Service :: getPost() :: ", error);
+      console.log("Appwrite service :: getPost() :: ", error);
       return false;
     }
   }

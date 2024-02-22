@@ -13,7 +13,7 @@ function Post() {
   const userData = useSelector((state) => state.auth.userData);
   const isAuthor = post && userData ? post.userId === userData.$id : false;
   const deletePost = async () => {
-    await appwriteService.deletePost(podt.$id).then(async (status) => {
+    await appwriteService.deletePost(post.$id).then(async (status) => {
       if (status) {
         await appwriteService.deleteFile(post.featuredImage);
         navigate("/");
@@ -32,14 +32,14 @@ function Post() {
   return post ? (
     <div className="py-8">
       <Container>
-        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
+        <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2 bg-red-300">
           <img
-            src={appwriteService.getPreview(post.$id)}
+            src={appwriteService.getPreview(post.featuredImage)}
             alt={post.title}
-            className="rounded-xl"
+            className="rounded-xl scale-75"
           />
           {isAuthor && (
-            <div className="absolute-right-6 top-6">
+            <div className="absolute top-6 flex right-10">
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor="bg-green-500" className="mr-3">
                   Edit
